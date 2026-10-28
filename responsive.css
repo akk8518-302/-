@@ -1,0 +1,181 @@
+/* ============================================================
+   閱讀冒險島 - 響應式排版 (responsive.css)
+   確保在平板、手機、不同寬度螢幕下內容不裁切、按鈕好點選
+   ============================================================ */
+
+/* 平板與中型螢幕 (<= 1024px) */
+@media screen and (max-width: 1024px) {
+  .home-hero-card {
+    grid-template-columns: 1fr;
+    padding: 30px 24px;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .hero-welcome-badge {
+    margin: 0 auto 16px auto;
+  }
+
+  .hero-main-title {
+    font-size: 2.1rem;
+  }
+
+  .hero-actions-row {
+    justify-content: center;
+  }
+
+  .levels-preview-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 闖關頁面在平板手機改為頁籤切換模式，避免兩欄太窄擠壓 */
+  .mobile-split-tabs-bar {
+    display: grid;
+  }
+
+  .challenge-split-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    min-height: auto;
+  }
+
+  .pdf-viewer-wrapper {
+    min-height: 550px;
+  }
+}
+
+/* 手機與小型螢幕 (<= 768px) */
+@media screen and (max-width: 768px) {
+  .app-container {
+    padding: 0 16px;
+  }
+
+  /* 導覽列微調 */
+  .site-header {
+    padding: 10px 0;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+  }
+
+  .brand-subtitle-tag {
+    display: none;
+  }
+
+  .site-nav-links {
+    gap: 4px;
+  }
+
+  .nav-btn {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+
+  .nav-btn span.nav-text {
+    display: none; /* 小手機僅顯示圖示 */
+  }
+
+  .btn-utility {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+
+  /* 首頁 */
+  .hero-main-title {
+    font-size: 1.7rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .levels-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-character-box {
+    max-width: 260px;
+  }
+
+  /* 題目卡片 */
+  .quiz-card-wrapper {
+    padding: 20px 16px;
+  }
+
+  .quiz-prompt-question {
+    font-size: 1.15rem;
+  }
+
+  .choice-option-card {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+
+  .option-text-content {
+    font-size: 0.98rem;
+  }
+
+  .matching-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-action-bar {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .quiz-action-left, .quiz-action-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .quiz-action-right .btn, .quiz-action-left .btn {
+    flex: 1;
+  }
+
+  /* 成果頁 */
+  .results-hero-card {
+    padding: 24px 16px;
+  }
+
+  .result-title-name {
+    font-size: 1.8rem;
+  }
+
+  .result-scores-row {
+    gap: 16px;
+  }
+
+  .score-stat-box {
+    padding: 16px 24px;
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .score-stat-number {
+    font-size: 1.8rem;
+  }
+
+  .results-actions-bar {
+    flex-direction: column;
+  }
+
+  .results-actions-bar .btn {
+    width: 100%;
+  }
+
+  /* PDF 工具列小螢幕收縮 */
+  .pdf-toolbar {
+    padding: 8px 12px;
+  }
+
+  .pdf-toolbar-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .pdf-viewer-wrapper {
+    min-height: 480px;
+  }
+}

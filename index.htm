@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>閱讀冒險島——四年級深層閱讀闖關網站</title>
+  <meta name="description" content="適合台灣國小四年級學生的 PIRLS 四層次深層閱讀互動闖關網站。結合 PDF 內嵌閱讀、提取訊息、直接推論、詮釋統整與評價省思，培養獨立思考與文本批判力。">
+
+  <!-- Google Fonts: Noto Sans TC (繁體中文清晰無襯線字體) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- 樣式庫引用 (全部集中在同一目錄) -->
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       頂部全域導覽列 (Site Header)
+       ============================================================ -->
+  <header class="site-header" role="banner">
+    <div class="app-container header-inner">
+      <!-- 品牌標誌 -->
+      <div class="brand-logo-group" data-nav-view="home" role="button" tabindex="0" aria-label="返回首頁">
+        <div class="brand-icon" aria-hidden="true">🐢</div>
+        <div>
+          <span class="brand-title">閱讀冒險島</span>
+          <span class="brand-subtitle-tag">四年級深層閱讀</span>
+        </div>
+      </div>
+
+      <!-- 主要導覽分頁按鈕 -->
+      <nav class="site-nav-links" role="navigation" aria-label="主選單">
+        <button type="button" class="nav-btn nav-link-active" data-nav-view="home">
+          <span>🏠</span><span class="nav-text">首頁</span>
+        </button>
+        <button type="button" class="nav-btn" data-nav-view="read">
+          <span>📖</span><span class="nav-text">專注閱讀</span>
+        </button>
+        <button type="button" class="nav-btn" data-nav-view="challenge">
+          <span>🧭</span><span class="nav-text">闖關測驗</span>
+        </button>
+        <button type="button" class="nav-btn" data-nav-view="result">
+          <span>🏆</span><span class="nav-text">學習成果</span>
+        </button>
+      </nav>
+
+      <!-- 右側輔助操作區 (音效、無障礙、教師) -->
+      <div class="header-utility-group">
+        <button type="button" class="btn-utility btn-active" id="toggle-sound-btn" title="切換作答音效">
+          🔊 音效：開
+        </button>
+        <button type="button" class="btn-utility" id="toggle-motion-btn" title="減少動態過渡動畫">
+          🏃 動態效果：標準
+        </button>
+        <button type="button" class="btn-utility btn-teacher-entry" id="btn-open-teacher-panel" title="開啟教師文章與題庫設定">
+          👩‍🏫 教師專區
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       主內容區塊 (Main Views Container)
+       ============================================================ -->
+  <main class="app-container" role="main">
+
+    <!-- 1. 首頁視圖 (Home View) -->
+    <section id="home-view" class="view-panel" style="display: block;">
+      <div class="home-hero-card">
+        <div class="hero-content-col">
+          <div class="hero-welcome-badge">
+            <span>✨ 國小四年級 PIRLS 深層閱讀探險</span>
+          </div>
+          <h1 class="hero-main-title">
+            歡迎來到<br><span class="gradient-text">閱讀冒險島！</span>
+          </h1>
+          <p class="hero-description">
+            背上探險背包，跟著小甜根一起望向宜蘭海面！透過四道深層閱讀關卡，鍛鍊你的「觀察之眼」與「思考之翼」，發掘文章背後意想不到的驚喜與智慧！
+          </p>
+
+          <!-- 當前文章預告卡片 -->
+          <div class="hero-article-teaser-card">
+            <div class="teaser-meta">
+              <span class="teaser-tag">今日任務文章</span>
+              <span class="teaser-source" id="home-article-source">【得報】第 89 期「故事」專欄 ｜ 作者：小甜根</span>
+            </div>
+            <h2 class="teaser-title current-article-title-text">《海上有一隻烏龜》</h2>
+            <p class="teaser-summary">
+              車子往海邊開，遠遠的海面上有個黑黑的影子。那是一座島？還是一隻會說話的大烏龜？換個角度看世界，會有什麼不一樣的發現呢？
+            </p>
+          </div>
+
+          <!-- 操作按鈕 -->
+          <div class="hero-actions-row">
+            <button type="button" class="btn btn-adventure" id="btn-start-adventure">
+              🚀 開始閱讀闖關
+            </button>
+            <button type="button" class="btn btn-outline" id="btn-start-reading-alone">
+              📖 先讀文章 PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- 3D Q版風格視覺展示 -->
+        <div class="hero-visual-col" aria-hidden="true">
+          <div class="hero-character-box">
+            <!-- 向量 3D Q版小探險家與海龜島圖解 -->
+            <svg class="hero-3d-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- 背景光環 -->
+              <circle cx="200" cy="200" r="160" fill="url(#bgGlow)" opacity="0.6"/>
+              
+              <!-- 碧藍波浪底層 -->
+              <ellipse cx="200" cy="300" rx="140" ry="40" fill="#60A5FA" opacity="0.4"/>
+              <ellipse cx="190" cy="290" rx="120" ry="32" fill="#38BDF8" opacity="0.6"/>
+              
+              <!-- 可愛龜山島大烏龜 (3D立體擬物風格) -->
+              <ellipse cx="160" cy="265" rx="85" ry="45" fill="#34D399"/>
+              <path d="M90 260C90 220 130 200 170 200C220 200 245 230 245 260C245 285 200 295 160 295C120 295 90 285 90 260Z" fill="#10B981" filter="drop-shadow(0 8px 12px rgba(5,150,105,0.3))"/>
+              
+              <!-- 龜殼紋路 (如山巒島嶼) -->
+              <path d="M140 215C150 208 175 208 185 215L195 235L170 250L135 240L140 215Z" fill="#059669" stroke="#6EE7B7" stroke-width="3"/>
+              <path d="M125 245L150 255L145 280L115 270L125 245Z" fill="#047857" stroke="#6EE7B7" stroke-width="2.5"/>
+              <path d="M175 255L205 245L220 270L190 280L175 255Z" fill="#047857" stroke="#6EE7B7" stroke-width="2.5"/>
+              
+              <!-- 島上的綠樹與燈塔微縮 -->
+              <rect x="175" y="175" width="12" height="30" rx="3" fill="#F8FAFC"/>
+              <polygon points="170,175 192,175 181,160" fill="#EF4444"/>
+              <circle cx="181" cy="183" r="4" fill="#FBBF24"/>
+              <!-- 樹木 -->
+              <circle cx="150" cy="190" r="14" fill="#059669"/>
+              <circle cx="140" cy="195" r="10" fill="#10B981"/>
+              
+              <!-- 烏龜頭部 -->
+              <circle cx="80" cy="270" r="22" fill="#34D399"/>
+              <circle cx="72" cy="265" r="4" fill="#1E293B"/>
+              <circle cx="70" cy="263" r="1.5" fill="#FFFFFF"/>
+              <path d="M68 276C72 280 80 280 84 276" stroke="#065F46" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="68" cy="272" r="5" fill="#F472B6" opacity="0.6"/> <!-- 腮紅 -->
+
+              <!-- 3D Q版小探險家小甜根 -->
+              <!-- 身體/黃色夾克 -->
+              <rect x="250" y="210" width="55" height="65" rx="16" fill="#FBBF24" filter="drop-shadow(0 6px 10px rgba(0,0,0,0.15))"/>
+              <!-- 探險後背包 -->
+              <rect x="290" y="215" width="22" height="50" rx="8" fill="#B45309"/>
+              <!-- 臉龐與笑容 -->
+              <circle cx="275" cy="170" r="30" fill="#FED7AA"/>
+              <circle cx="265" cy="168" r="4" fill="#1E293B"/>
+              <circle cx="285" cy="168" r="4" fill="#1E293B"/>
+              <circle cx="263" cy="166" r="1.5" fill="#FFFFFF"/>
+              <circle cx="283" cy="166" r="1.5" fill="#FFFFFF"/>
+              <path d="M270 178C273 182 278 182 281 178" stroke="#9A3412" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- 腮紅 -->
+              <circle cx="260" cy="174" r="5" fill="#FB7185" opacity="0.5"/>
+              <circle cx="290" cy="174" r="5" fill="#FB7185" opacity="0.5"/>
+              
+              <!-- 俏麗短髮與探險遮陽帽 -->
+              <path d="M245 160C245 135 270 135 285 135C305 135 310 155 305 175C300 170 295 165 290 165C280 165 275 160 270 160C260 160 250 165 245 160Z" fill="#78350F"/>
+              <!-- 探險家遮陽帽 -->
+              <ellipse cx="275" cy="142" rx="42" ry="12" fill="#D97706"/>
+              <path d="M250 142C250 120 260 115 275 115C290 115 300 120 300 142Z" fill="#F59E0B"/>
+              <rect x="250" y="137" width="50" height="5" fill="#92400E"/>
+
+              <!-- 手持發光放大鏡 -->
+              <path d="M235 235L220 250" stroke="#78350F" stroke-width="6" stroke-linecap="round"/>
+              <circle cx="215" cy="235" r="18" fill="rgba(191, 219, 254, 0.4)" stroke="#F59E0B" stroke-width="5"/>
+              <path d="M210 228L220 238" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+              <!-- 閃爍星星 -->
+              <polygon points="215,205 218,212 225,215 218,218 215,225 212,218 205,215 212,212" fill="#FBBF24"/>
+              <polygon points="120,165 122,170 127,172 122,174 120,179 118,174 113,172 118,170" fill="#FBBF24"/>
+              
+              <!-- 漸層定義 -->
+              <defs>
+                <radialGradient id="bgGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(200 200) rotate(90) scale(160)">
+                  <stop stop-color="#93C5FD"/>
+                  <stop offset="0.7" stop-color="#EFF6FF"/>
+                  <stop offset="1" stop-color="#EFF6FF" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 四層次閱讀地圖導覽區 -->
+      <div class="home-section-title-box">
+        <h3 class="home-section-title">🗺️ 四層次閱讀冒險地圖</h3>
+        <p class="home-section-subtitle">依照國際 PIRLS 閱讀素養標準設計，步步進階，讓理解更有深度！</p>
+      </div>
+
+      <div class="levels-preview-grid" id="home-levels-list">
+        <!-- 透過 JS 自動渲染四道關卡 -->
+      </div>
+    </section>
+
+    <!-- 2. 專注閱讀全景視圖 (Read View) -->
+    <section id="read-view" class="view-panel" style="display: none;">
+      <div style="margin: 20px 0 16px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <h2 style="font-size: 1.6rem; font-weight: 800; color: #1e3a8a;">
+            📖 文章閱讀區：<span class="current-article-title-text">《海上有一隻烏龜》</span>
+          </h2>
+          <p style="font-size: 0.95rem; color: #64748b;">
+            請放鬆心情，仔細閱讀小甜根的旅程故事。你可以放大縮小或切換全螢幕閱讀喔！
+          </p>
+        </div>
+        <div>
+          <button type="button" class="btn btn-adventure" data-nav-view="challenge">
+            ✏️ 我讀完了，開始答題 ➡
+          </button>
+        </div>
+      </div>
+
+      <!-- 獨立大畫面 PDF 容器 -->
+      <div id="standalone-pdf-container" style="min-height: 750px; margin-bottom: 40px;">
+        <!-- 由 pdf-viewer.js 渲染 -->
+      </div>
+    </section>
+
+    <!-- 3. 四層次闖關測驗視圖 (Challenge View - 桌機左右並排 / 平板手機頁籤切換) -->
+    <section id="challenge-view" class="view-panel" style="display: none;">
+      <!-- 平板與手機版切換頁籤列 -->
+      <div class="mobile-split-tabs-bar" role="tablist">
+        <button type="button" class="tab-btn" id="mobile-tab-article" role="tab" aria-selected="false">
+          📄 查看文章原文
+        </button>
+        <button type="button" class="tab-btn tab-active" id="mobile-tab-quiz" role="tab" aria-selected="true">
+          ✏️ 進行闖關答題
+        </button>
+      </div>
+
+      <!-- 核心雙欄佈局 (左側 PDF 閱讀器，右側題目區) -->
+      <div class="challenge-split-layout">
+        <!-- 左欄：文章閱讀器 -->
+        <div class="challenge-article-column" id="challenge-article-col">
+          <div id="pdf-column-container" style="height: 100%;">
+            <!-- 由 pdf-viewer.js 渲染內嵌閱讀器 -->
+          </div>
+        </div>
+
+        <!-- 右欄：題目互動區 -->
+        <div class="challenge-quiz-column" id="challenge-quiz-col">
+          <div id="quiz-container-box">
+            <!-- 由 quiz-engine.js 渲染當前題目 -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 學習成果報告視圖 (Result View) -->
+    <section id="result-view" class="view-panel" style="display: none;">
+      <!-- 英雄成果卡片 -->
+      <div class="results-hero-card">
+        <div class="result-badge-display">🏆</div>
+        <div class="result-stars" id="result-stars-row">★★★</div>
+        <h2 class="result-title-name" id="result-badge-name">閱讀冒險大師</h2>
+        <p class="result-desc-text" id="result-badge-desc">
+          恭喜你順利通關所有四個閱讀理解層次！
+        </p>
+
+        <!-- 分數統計區塊 -->
+        <div class="result-scores-row">
+          <div class="score-stat-box">
+            <div class="score-stat-label">🎯 測驗總得分</div>
+            <div class="score-stat-number" id="result-score-val">26 / 26</div>
+          </div>
+          <div class="score-stat-box">
+            <div class="score-stat-label">📈 掌握達成率</div>
+            <div class="score-stat-number" id="result-percent-val">100%</div>
+          </div>
+        </div>
+
+        <!-- 四層次掌握分析 -->
+        <div class="results-breakdown-card">
+          <h3 class="breakdown-title">📊 四層次閱讀素養能力分析</h3>
+          <div id="result-level-breakdown">
+            <!-- 由 app.js 動態填充四層次進度長條圖 -->
+          </div>
+        </div>
+
+        <!-- 題目總回顧清單 -->
+        <div class="results-review-card">
+          <h3 class="breakdown-title">📝 闖關題目答題歷程與文章依據回顧</h3>
+          <div class="review-items-grid" id="result-review-list">
+            <!-- 由 app.js 動態填充題目回顧 -->
+          </div>
+        </div>
+
+        <!-- 成果按鈕列 -->
+        <div class="results-actions-bar">
+          <button type="button" class="btn btn-primary" id="btn-print-certificate">
+            🖨️ 列印學習證書
+          </button>
+          <button type="button" class="btn btn-outline" id="btn-back-to-article">
+            📄 回到文章閱讀
+          </button>
+          <button type="button" class="btn btn-outline-soft" id="btn-restart-entire-quiz">
+            🔄 重新開始挑戰
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       教師管理面板彈窗 (Teacher Modal Dialog)
+       ============================================================ -->
+  <div class="modal-overlay" id="teacher-management-modal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="teacher-modal-title">
+    <div class="modal-dialog-card">
+      <div class="modal-header-row">
+        <h3 class="modal-title" id="teacher-modal-title">👩‍🏫 教師管理專區：文章與題庫設定說明</h3>
+        <button type="button" class="btn-close-modal" id="btn-close-teacher-modal" aria-label="關閉彈窗">✕</button>
+      </div>
+
+      <div class="modal-body-content">
+        <p style="font-size: 0.95rem; color: #475569; margin-bottom: 16px;">
+          本網站採用<strong>「資料與畫面完全分離」</strong>架構。教師無需修改複雜的前端介面程式碼，即可隨時更換文章與題目。所有互動 JavaScript 檔案均已集中在 <code>js/</code> 目錄中！
+        </p>
+
+        <!-- 當前文章狀態預覽 -->
+        <div id="teacher-article-info-preview">
+          <!-- 由 app.js 填充 -->
+        </div>
+
+        <!-- 教師三步驟更換文章指南 -->
+        <div class="teacher-guide-steps">
+          <h4>📌 教師更換新文章 3 步驟教學：</h4>
+          <ol>
+            <li>
+              <strong>放入新 PDF 檔案</strong>：將您的文章 PDF（例如 <code>new-article.pdf</code>）存入專案的 <code>public/articles/</code> 資料夾。
+            </li>
+            <li>
+              <strong>更新文章基本資料</strong>：用文字編輯器開啟 <code>js/articles-config.js</code>，修改標題、作者、難度與 PDF 檔案路徑（如 <code>public/articles/new-article.pdf</code>）。
+            </li>
+            <li>
+              <strong>更新四層次題目資料</strong>：開啟 <code>js/quiz-data.js</code>，直接修改對應層次的題目文字、選項、答案與解析即可即時生效！
+            </li>
+          </ol>
+        </div>
+
+        <div style="text-align: right; margin-top: 16px;">
+          <button type="button" class="btn btn-primary" onclick="document.getElementById('teacher-management-modal').style.display='none'">
+            我知道了，返回網站
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       頁尾 (Site Footer)
+       ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="app-container">
+      <p>閱讀冒險島 ｜ 專為台灣國小四年級學生打造的 PIRLS 深層閱讀互動教學平台</p>
+      <p class="sub-info">文本來源：【得報】第 89 期故事專欄〈海上有一隻烏龜〉（作者：小甜根） ｜ 支援 GitHub Pages 靜態網站部署</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JavaScript 模組引用 (所有網頁檔案全部集中在同一目錄)
+       ============================================================ -->
+  <script src="articles-config.js"></script>
+  <script src="quiz-data.js"></script>
+  <script src="pdf-viewer.js"></script>
+  <script src="quiz-engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

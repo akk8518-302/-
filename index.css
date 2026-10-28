@@ -1,0 +1,262 @@
+/* ============================================================
+   閱讀冒險島 - 全域設計系統與基礎樣式 (index.css)
+   國小四年級兒童友善 3D Q版風格，柔和馬卡龍色系，圓潤高質感
+   ============================================================ */
+
+:root {
+  /* 品牌核心色彩 - 柔和海島馬卡龍 */
+  --primary-blue: #3b82f6;
+  --primary-blue-hover: #2563eb;
+  --primary-blue-light: #eff6ff;
+  --primary-blue-glow: rgba(59, 130, 246, 0.25);
+
+  --mint-green: #10b981;
+  --mint-green-hover: #059669;
+  --mint-green-light: #ecfdf5;
+
+  --butter-yellow: #f59e0b;
+  --butter-yellow-light: #fef3c7;
+
+  --lavender-purple: #8b5cf6;
+  --lavender-purple-light: #f5f3ff;
+
+  --coral-pink: #ec4899;
+  --coral-pink-light: #fdf2f8;
+
+  /* 中性色與文字對比度 */
+  --bg-gradient-start: #f8fafc;
+  --bg-gradient-end: #f0fdf4;
+  --surface-card: #ffffff;
+  --surface-elevated: #ffffff;
+  --border-subtle: #e2e8f0;
+  --border-focus: #93c5fd;
+
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+
+  /* 兒童友善字級與排版 (四年級易讀) */
+  --font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft JhengHei", "微軟正黑體", sans-serif;
+  --font-size-base: 17px;
+  --line-height-base: 1.65;
+
+  /* 圓角系統 */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 9999px;
+
+  /* 3D 浮雕陰影系統 */
+  --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 10px 25px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+  --shadow-3d-btn: 0 5px 0 #1d4ed8, 0 8px 15px rgba(37, 99, 235, 0.3);
+  --shadow-3d-btn-active: 0 2px 0 #1d4ed8, 0 4px 8px rgba(37, 99, 235, 0.2);
+
+  /* 動畫速度 */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 盒模型重設 */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--text-main);
+  background: linear-gradient(135deg, #f0f7ff 0%, #fefcf3 50%, #f0fdf4 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 無障礙動態效果開關 */
+.reduce-motion-mode *,
+.reduce-motion-mode *::before,
+.reduce-motion-mode *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* 容器佈局 */
+.app-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  flex: 1;
+}
+
+/* ============================================================
+   頂部全域導覽列 (Navbar)
+   ============================================================ */
+.site-header {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 2px solid rgba(226, 232, 240, 0.8);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 12px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand-logo-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.35);
+  transform: rotate(-3deg);
+  transition: transform var(--transition-normal);
+}
+
+.brand-logo-group:hover .brand-icon {
+  transform: rotate(4deg) scale(1.05);
+}
+
+.brand-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1e3a8a;
+  letter-spacing: -0.01em;
+}
+
+.brand-subtitle-tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  background: var(--primary-blue-light);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  margin-left: 6px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* 導覽列連結 */
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-btn:hover {
+  background: var(--primary-blue-light);
+  color: var(--primary-blue);
+}
+
+.nav-btn.nav-link-active {
+  background: var(--primary-blue);
+  color: #ffffff;
+  box-shadow: 0 4px 10px var(--primary-blue-glow);
+}
+
+/* 頂部輔助操作區 (音效、無障礙、教師) */
+.header-utility-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-utility {
+  background: #f1f5f9;
+  border: 1px solid var(--border-subtle);
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.btn-utility:hover {
+  background: #e2e8f0;
+  color: var(--text-main);
+}
+
+.btn-utility.btn-active {
+  background: #dbeafe;
+  color: var(--primary-blue);
+  border-color: #bfdbfe;
+}
+
+.btn-teacher-entry {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #92400e;
+  border: 1px solid #fcd34d;
+  font-weight: 700;
+}
+
+.btn-teacher-entry:hover {
+  background: linear-gradient(135deg, #fde68a, #fcd34d);
+  transform: translateY(-1px);
+}
+
+/* 頁尾 */
+.site-footer {
+  margin-top: auto;
+  background: rgba(255, 255, 255, 0.7);
+  border-top: 1px solid var(--border-subtle);
+  padding: 20px 0;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.site-footer p {
+  margin-bottom: 4px;
+}
+
+.site-footer .sub-info {
+  font-size: 0.8rem;
+  color: var(--text-subtle);
+}
